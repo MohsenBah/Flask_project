@@ -1,11 +1,12 @@
 import numpy as np
 from flask import Flask, request, render_template
 import pickle
-from sklearn.linear_model import PassiveAggressiveClassifier
+import os
 import MLfunctions as fu
 
 
 app = Flask(__name__)
+
 
 tf = pickle.load(open('/Users/mohsen/Documents/GitHub/Flask_project/pac_tfidf.pk','rb'))
 saved_clf = pickle.load(open('/Users/mohsen/Documents/GitHub/Flask_project/fake_news_PAC.sav','rb'))
@@ -27,7 +28,8 @@ def predict():
     else:
        output = "TRUE"
 
-    return render_template('index.html', prediction_text='This news  "{}"  is {}'.format(test,output))
+
+    return render_template('index.html', prediction_text='This news  "{}"  is {}.'.format(test,output))
 
 
 if __name__ == "__main__":
